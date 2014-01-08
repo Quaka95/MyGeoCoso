@@ -16,6 +16,7 @@ namespace MyGeoCoso
         //Parametri
         GraphParametr par;
         BisezioneParametr bpar;
+        SecantiParametr spar;
         ExpressionParser _parser;
         bool _disegnato = false;
 
@@ -25,6 +26,7 @@ namespace MyGeoCoso
             InitializeComponent();
             par = new GraphParametr();
             bpar = new BisezioneParametr();
+            spar = new SecantiParametr();
             _parser = new ExpressionParser();
         }
 

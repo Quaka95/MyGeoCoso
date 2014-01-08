@@ -33,16 +33,6 @@
             this.txtFunzione = new System.Windows.Forms.TextBox();
             this.btnDisegna = new System.Windows.Forms.Button();
             this.tabBase = new System.Windows.Forms.TabControl();
-            this.tabBisezione = new System.Windows.Forms.TabPage();
-            this.btnBisezione = new System.Windows.Forms.Button();
-            this.lblBXa = new System.Windows.Forms.Label();
-            this.lblBXb = new System.Windows.Forms.Label();
-            this.lblBPrecisione = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txrBXa = new Mate.TextRegex.TextRegex();
-            this.txrBXb = new Mate.TextRegex.TextRegex();
-            this.txrBPrecisione = new Mate.TextRegex.TextRegex();
-            this.txrBCicli = new Mate.TextRegex.TextRegex();
             this.tabParametri = new System.Windows.Forms.TabPage();
             this.btnSvuota = new System.Windows.Forms.Button();
             this.lblDelY = new System.Windows.Forms.Label();
@@ -57,11 +47,31 @@
             this.txrDelY = new Mate.TextRegex.TextRegex();
             this.txrMinY = new Mate.TextRegex.TextRegex();
             this.txrDelX = new Mate.TextRegex.TextRegex();
-            this.lblFunzione = new System.Windows.Forms.Label();
+            this.tabBisezione = new System.Windows.Forms.TabPage();
+            this.btnBisezione = new System.Windows.Forms.Button();
+            this.lblBXa = new System.Windows.Forms.Label();
+            this.lblBXb = new System.Windows.Forms.Label();
+            this.lblBPrecisione = new System.Windows.Forms.Label();
+            this.lblBCicli = new System.Windows.Forms.Label();
+            this.txrBXa = new Mate.TextRegex.TextRegex();
+            this.txrBXb = new Mate.TextRegex.TextRegex();
+            this.txrBPrecisione = new Mate.TextRegex.TextRegex();
+            this.txrBCicli = new Mate.TextRegex.TextRegex();
             this.tabSecanti = new System.Windows.Forms.TabPage();
+            this.btnSecante = new System.Windows.Forms.Button();
+            this.lblSXa = new System.Windows.Forms.Label();
+            this.lblSXb = new System.Windows.Forms.Label();
+            this.lblSPrecisione = new System.Windows.Forms.Label();
+            this.lblSCicli = new System.Windows.Forms.Label();
+            this.txrSXa = new Mate.TextRegex.TextRegex();
+            this.txrSXb = new Mate.TextRegex.TextRegex();
+            this.txrSPrecisione = new Mate.TextRegex.TextRegex();
+            this.txrSCicli = new Mate.TextRegex.TextRegex();
+            this.lblFunzione = new System.Windows.Forms.Label();
             this.tabBase.SuspendLayout();
-            this.tabBisezione.SuspendLayout();
             this.tabParametri.SuspendLayout();
+            this.tabBisezione.SuspendLayout();
+            this.tabSecanti.SuspendLayout();
             this.SuspendLayout();
             // 
             // graph
@@ -107,107 +117,6 @@
             this.tabBase.SelectedIndex = 0;
             this.tabBase.Size = new System.Drawing.Size(400, 322);
             this.tabBase.TabIndex = 9;
-            // 
-            // tabBisezione
-            // 
-            this.tabBisezione.Controls.Add(this.btnBisezione);
-            this.tabBisezione.Controls.Add(this.lblBXa);
-            this.tabBisezione.Controls.Add(this.lblBXb);
-            this.tabBisezione.Controls.Add(this.lblBPrecisione);
-            this.tabBisezione.Controls.Add(this.label4);
-            this.tabBisezione.Controls.Add(this.txrBXa);
-            this.tabBisezione.Controls.Add(this.txrBXb);
-            this.tabBisezione.Controls.Add(this.txrBPrecisione);
-            this.tabBisezione.Controls.Add(this.txrBCicli);
-            this.tabBisezione.Location = new System.Drawing.Point(4, 22);
-            this.tabBisezione.Name = "tabBisezione";
-            this.tabBisezione.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBisezione.Size = new System.Drawing.Size(392, 296);
-            this.tabBisezione.TabIndex = 1;
-            this.tabBisezione.Text = "Bisezione";
-            this.tabBisezione.UseVisualStyleBackColor = true;
-            // 
-            // btnBisezione
-            // 
-            this.btnBisezione.Location = new System.Drawing.Point(159, 219);
-            this.btnBisezione.Name = "btnBisezione";
-            this.btnBisezione.Size = new System.Drawing.Size(75, 23);
-            this.btnBisezione.TabIndex = 10;
-            this.btnBisezione.Text = "Biseziona";
-            this.btnBisezione.UseVisualStyleBackColor = true;
-            this.btnBisezione.Click += new System.EventHandler(this.DisegnaBisezione);
-            // 
-            // lblBXa
-            // 
-            this.lblBXa.AutoSize = true;
-            this.lblBXa.Location = new System.Drawing.Point(118, 61);
-            this.lblBXa.Name = "lblBXa";
-            this.lblBXa.Size = new System.Drawing.Size(26, 13);
-            this.lblBXa.TabIndex = 10;
-            this.lblBXa.Text = "Xa: ";
-            // 
-            // lblBXb
-            // 
-            this.lblBXb.AutoSize = true;
-            this.lblBXb.Location = new System.Drawing.Point(118, 87);
-            this.lblBXb.Name = "lblBXb";
-            this.lblBXb.Size = new System.Drawing.Size(26, 13);
-            this.lblBXb.TabIndex = 11;
-            this.lblBXb.Text = "Xb: ";
-            // 
-            // lblBPrecisione
-            // 
-            this.lblBPrecisione.AutoSize = true;
-            this.lblBPrecisione.Location = new System.Drawing.Point(89, 135);
-            this.lblBPrecisione.Name = "lblBPrecisione";
-            this.lblBPrecisione.Size = new System.Drawing.Size(62, 13);
-            this.lblBPrecisione.TabIndex = 12;
-            this.lblBPrecisione.Text = "Precisione: ";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(122, 161);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Cicli:";
-            // 
-            // txrBXa
-            // 
-            this.txrBXa.Location = new System.Drawing.Point(183, 54);
-            this.txrBXa.Name = "txrBXa";
-            this.txrBXa.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
-            this.txrBXa.SafeText = "-1";
-            this.txrBXa.Size = new System.Drawing.Size(120, 20);
-            this.txrBXa.TabIndex = 14;
-            // 
-            // txrBXb
-            // 
-            this.txrBXb.Location = new System.Drawing.Point(183, 80);
-            this.txrBXb.Name = "txrBXb";
-            this.txrBXb.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
-            this.txrBXb.SafeText = "0";
-            this.txrBXb.Size = new System.Drawing.Size(120, 20);
-            this.txrBXb.TabIndex = 15;
-            // 
-            // txrBPrecisione
-            // 
-            this.txrBPrecisione.Location = new System.Drawing.Point(183, 128);
-            this.txrBPrecisione.Name = "txrBPrecisione";
-            this.txrBPrecisione.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
-            this.txrBPrecisione.SafeText = "0,01";
-            this.txrBPrecisione.Size = new System.Drawing.Size(120, 20);
-            this.txrBPrecisione.TabIndex = 16;
-            // 
-            // txrBCicli
-            // 
-            this.txrBCicli.Location = new System.Drawing.Point(183, 154);
-            this.txrBCicli.Name = "txrBCicli";
-            this.txrBCicli.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
-            this.txrBCicli.SafeText = "5";
-            this.txrBCicli.Size = new System.Drawing.Size(120, 20);
-            this.txrBCicli.TabIndex = 17;
             // 
             // tabParametri
             // 
@@ -350,6 +259,208 @@
             this.txrDelX.Size = new System.Drawing.Size(154, 20);
             this.txrDelX.TabIndex = 5;
             // 
+            // tabBisezione
+            // 
+            this.tabBisezione.Controls.Add(this.btnBisezione);
+            this.tabBisezione.Controls.Add(this.lblBXa);
+            this.tabBisezione.Controls.Add(this.lblBXb);
+            this.tabBisezione.Controls.Add(this.lblBPrecisione);
+            this.tabBisezione.Controls.Add(this.lblBCicli);
+            this.tabBisezione.Controls.Add(this.txrBXa);
+            this.tabBisezione.Controls.Add(this.txrBXb);
+            this.tabBisezione.Controls.Add(this.txrBPrecisione);
+            this.tabBisezione.Controls.Add(this.txrBCicli);
+            this.tabBisezione.Location = new System.Drawing.Point(4, 22);
+            this.tabBisezione.Name = "tabBisezione";
+            this.tabBisezione.Padding = new System.Windows.Forms.Padding(3);
+            this.tabBisezione.Size = new System.Drawing.Size(392, 296);
+            this.tabBisezione.TabIndex = 1;
+            this.tabBisezione.Text = "Bisezione";
+            this.tabBisezione.UseVisualStyleBackColor = true;
+            // 
+            // btnBisezione
+            // 
+            this.btnBisezione.Location = new System.Drawing.Point(159, 219);
+            this.btnBisezione.Name = "btnBisezione";
+            this.btnBisezione.Size = new System.Drawing.Size(75, 23);
+            this.btnBisezione.TabIndex = 10;
+            this.btnBisezione.Text = "Biseziona";
+            this.btnBisezione.UseVisualStyleBackColor = true;
+            this.btnBisezione.Click += new System.EventHandler(this.DisegnaBisezione);
+            // 
+            // lblBXa
+            // 
+            this.lblBXa.AutoSize = true;
+            this.lblBXa.Location = new System.Drawing.Point(118, 61);
+            this.lblBXa.Name = "lblBXa";
+            this.lblBXa.Size = new System.Drawing.Size(26, 13);
+            this.lblBXa.TabIndex = 10;
+            this.lblBXa.Text = "Xa: ";
+            // 
+            // lblBXb
+            // 
+            this.lblBXb.AutoSize = true;
+            this.lblBXb.Location = new System.Drawing.Point(118, 87);
+            this.lblBXb.Name = "lblBXb";
+            this.lblBXb.Size = new System.Drawing.Size(26, 13);
+            this.lblBXb.TabIndex = 11;
+            this.lblBXb.Text = "Xb: ";
+            // 
+            // lblBPrecisione
+            // 
+            this.lblBPrecisione.AutoSize = true;
+            this.lblBPrecisione.Location = new System.Drawing.Point(89, 135);
+            this.lblBPrecisione.Name = "lblBPrecisione";
+            this.lblBPrecisione.Size = new System.Drawing.Size(62, 13);
+            this.lblBPrecisione.TabIndex = 12;
+            this.lblBPrecisione.Text = "Precisione: ";
+            // 
+            // lblBCicli
+            // 
+            this.lblBCicli.AutoSize = true;
+            this.lblBCicli.Location = new System.Drawing.Point(122, 161);
+            this.lblBCicli.Name = "lblBCicli";
+            this.lblBCicli.Size = new System.Drawing.Size(29, 13);
+            this.lblBCicli.TabIndex = 13;
+            this.lblBCicli.Text = "Cicli:";
+            // 
+            // txrBXa
+            // 
+            this.txrBXa.Location = new System.Drawing.Point(183, 54);
+            this.txrBXa.Name = "txrBXa";
+            this.txrBXa.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
+            this.txrBXa.SafeText = "-1";
+            this.txrBXa.Size = new System.Drawing.Size(120, 20);
+            this.txrBXa.TabIndex = 14;
+            // 
+            // txrBXb
+            // 
+            this.txrBXb.Location = new System.Drawing.Point(183, 80);
+            this.txrBXb.Name = "txrBXb";
+            this.txrBXb.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
+            this.txrBXb.SafeText = "0";
+            this.txrBXb.Size = new System.Drawing.Size(120, 20);
+            this.txrBXb.TabIndex = 15;
+            // 
+            // txrBPrecisione
+            // 
+            this.txrBPrecisione.Location = new System.Drawing.Point(183, 128);
+            this.txrBPrecisione.Name = "txrBPrecisione";
+            this.txrBPrecisione.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
+            this.txrBPrecisione.SafeText = "0,01";
+            this.txrBPrecisione.Size = new System.Drawing.Size(120, 20);
+            this.txrBPrecisione.TabIndex = 16;
+            // 
+            // txrBCicli
+            // 
+            this.txrBCicli.Location = new System.Drawing.Point(183, 154);
+            this.txrBCicli.Name = "txrBCicli";
+            this.txrBCicli.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
+            this.txrBCicli.SafeText = "5";
+            this.txrBCicli.Size = new System.Drawing.Size(120, 20);
+            this.txrBCicli.TabIndex = 17;
+            // 
+            // tabSecanti
+            // 
+            this.tabSecanti.Controls.Add(this.btnSecante);
+            this.tabSecanti.Controls.Add(this.lblSXa);
+            this.tabSecanti.Controls.Add(this.lblSXb);
+            this.tabSecanti.Controls.Add(this.lblSPrecisione);
+            this.tabSecanti.Controls.Add(this.lblSCicli);
+            this.tabSecanti.Controls.Add(this.txrSXa);
+            this.tabSecanti.Controls.Add(this.txrSXb);
+            this.tabSecanti.Controls.Add(this.txrSPrecisione);
+            this.tabSecanti.Controls.Add(this.txrSCicli);
+            this.tabSecanti.Location = new System.Drawing.Point(4, 22);
+            this.tabSecanti.Name = "tabSecanti";
+            this.tabSecanti.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSecanti.Size = new System.Drawing.Size(392, 296);
+            this.tabSecanti.TabIndex = 2;
+            this.tabSecanti.Text = "Secanti";
+            this.tabSecanti.UseVisualStyleBackColor = true;
+            // 
+            // btnSecante
+            // 
+            this.btnSecante.Location = new System.Drawing.Point(159, 219);
+            this.btnSecante.Name = "btnSecante";
+            this.btnSecante.Size = new System.Drawing.Size(75, 23);
+            this.btnSecante.TabIndex = 19;
+            this.btnSecante.Text = "Secante";
+            this.btnSecante.UseVisualStyleBackColor = true;
+            this.btnSecante.Click += new System.EventHandler(this.DisegnaSecante);
+            // 
+            // lblSXa
+            // 
+            this.lblSXa.AutoSize = true;
+            this.lblSXa.Location = new System.Drawing.Point(118, 61);
+            this.lblSXa.Name = "lblSXa";
+            this.lblSXa.Size = new System.Drawing.Size(26, 13);
+            this.lblSXa.TabIndex = 18;
+            this.lblSXa.Text = "Xa: ";
+            // 
+            // lblSXb
+            // 
+            this.lblSXb.AutoSize = true;
+            this.lblSXb.Location = new System.Drawing.Point(118, 87);
+            this.lblSXb.Name = "lblSXb";
+            this.lblSXb.Size = new System.Drawing.Size(26, 13);
+            this.lblSXb.TabIndex = 20;
+            this.lblSXb.Text = "Xb: ";
+            // 
+            // lblSPrecisione
+            // 
+            this.lblSPrecisione.AutoSize = true;
+            this.lblSPrecisione.Location = new System.Drawing.Point(89, 135);
+            this.lblSPrecisione.Name = "lblSPrecisione";
+            this.lblSPrecisione.Size = new System.Drawing.Size(62, 13);
+            this.lblSPrecisione.TabIndex = 21;
+            this.lblSPrecisione.Text = "Precisione: ";
+            // 
+            // lblSCicli
+            // 
+            this.lblSCicli.AutoSize = true;
+            this.lblSCicli.Location = new System.Drawing.Point(122, 161);
+            this.lblSCicli.Name = "lblSCicli";
+            this.lblSCicli.Size = new System.Drawing.Size(29, 13);
+            this.lblSCicli.TabIndex = 22;
+            this.lblSCicli.Text = "Cicli:";
+            // 
+            // txrSXa
+            // 
+            this.txrSXa.Location = new System.Drawing.Point(183, 54);
+            this.txrSXa.Name = "txrSXa";
+            this.txrSXa.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
+            this.txrSXa.SafeText = "-1";
+            this.txrSXa.Size = new System.Drawing.Size(120, 20);
+            this.txrSXa.TabIndex = 23;
+            // 
+            // txrSXb
+            // 
+            this.txrSXb.Location = new System.Drawing.Point(183, 80);
+            this.txrSXb.Name = "txrSXb";
+            this.txrSXb.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
+            this.txrSXb.SafeText = "0";
+            this.txrSXb.Size = new System.Drawing.Size(120, 20);
+            this.txrSXb.TabIndex = 24;
+            // 
+            // txrSPrecisione
+            // 
+            this.txrSPrecisione.Location = new System.Drawing.Point(183, 128);
+            this.txrSPrecisione.Name = "txrSPrecisione";
+            this.txrSPrecisione.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
+            this.txrSPrecisione.SafeText = "0,01";
+            this.txrSPrecisione.Size = new System.Drawing.Size(120, 20);
+            this.txrSPrecisione.TabIndex = 25;
+            // 
+            // txrSCicli
+            // 
+            this.txrSCicli.Location = new System.Drawing.Point(183, 154);
+            this.txrSCicli.Name = "txrSCicli";
+            this.txrSCicli.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
+            this.txrSCicli.SafeText = "5";
+            this.txrSCicli.Size = new System.Drawing.Size(120, 20);
+            this.txrSCicli.TabIndex = 26;
+            // 
             // lblFunzione
             // 
             this.lblFunzione.AutoSize = true;
@@ -358,16 +469,6 @@
             this.lblFunzione.Size = new System.Drawing.Size(24, 13);
             this.lblFunzione.TabIndex = 7;
             this.lblFunzione.Text = "f(x):";
-            // 
-            // tabSecanti
-            // 
-            this.tabSecanti.Location = new System.Drawing.Point(4, 22);
-            this.tabSecanti.Name = "tabSecanti";
-            this.tabSecanti.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSecanti.Size = new System.Drawing.Size(392, 296);
-            this.tabSecanti.TabIndex = 2;
-            this.tabSecanti.Text = "Secanti";
-            this.tabSecanti.UseVisualStyleBackColor = true;
             // 
             // FormBase
             // 
@@ -386,10 +487,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyGeoCoso";
             this.tabBase.ResumeLayout(false);
-            this.tabBisezione.ResumeLayout(false);
-            this.tabBisezione.PerformLayout();
             this.tabParametri.ResumeLayout(false);
             this.tabParametri.PerformLayout();
+            this.tabBisezione.ResumeLayout(false);
+            this.tabBisezione.PerformLayout();
+            this.tabSecanti.ResumeLayout(false);
+            this.tabSecanti.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,12 +524,21 @@
         private System.Windows.Forms.Label lblBXa;
         private System.Windows.Forms.Label lblBXb;
         private System.Windows.Forms.Label lblBPrecisione;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblBCicli;
         private Mate.TextRegex.TextRegex txrBXa;
         private Mate.TextRegex.TextRegex txrBXb;
         private Mate.TextRegex.TextRegex txrBPrecisione;
         private Mate.TextRegex.TextRegex txrBCicli;
         private System.Windows.Forms.TabPage tabSecanti;
+        private System.Windows.Forms.Button btnSecante;
+        private System.Windows.Forms.Label lblSXa;
+        private System.Windows.Forms.Label lblSXb;
+        private System.Windows.Forms.Label lblSPrecisione;
+        private System.Windows.Forms.Label lblSCicli;
+        private Mate.TextRegex.TextRegex txrSXa;
+        private Mate.TextRegex.TextRegex txrSXb;
+        private Mate.TextRegex.TextRegex txrSPrecisione;
+        private Mate.TextRegex.TextRegex txrSCicli;
     }
 }
 
