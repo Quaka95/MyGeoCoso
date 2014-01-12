@@ -14,7 +14,7 @@ namespace MyGeoCoso
 {
     public partial class FormBase
     {
-        private bool PrelevaSecanti()
+        private bool PrelevaTagente()
         {
             //Variabili
             bool status = true; //La variabile conferma che tutti i parametri erano corretti
@@ -28,30 +28,30 @@ namespace MyGeoCoso
             txrSPrecisione.SafeText = txrSPrecisione.SafeText.Replace('.', ',');
 
             //Preleva dati
-            spar.Funzione = par.Funzione;   //Copio la funzione
+            tpar.Funzione = par.Funzione;
 
-            if (double.TryParse(txrSXa.SafeText, out outer)) spar.A = outer; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
+            if (double.TryParse(txrTXa.SafeText, out outer)) tpar.A = outer; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
             else
             {
                 MessageBox.Show("Valore di A non valido", "Valore non valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 status = false;
             }
 
-            if (double.TryParse(txrSXb.SafeText, out outer)) spar.B = outer; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
+            if (double.TryParse(txrTXb.SafeText, out outer)) tpar.B = outer; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
             else
             {
                 MessageBox.Show("Valore di B non valido", "Valore non valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 status = false;
             }
 
-            if (int.TryParse(txrSCicli.SafeText, out iouter) && iouter > 0) spar.Cicli = iouter; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
+            if (int.TryParse(txrTCicli.SafeText, out iouter) && iouter > 0) tpar.Cicli = iouter; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
             else
             {
                 MessageBox.Show("Valore dei cicli non valido", "Valore non valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 status = false;
             }
 
-            if (double.TryParse(txrSPrecisione.SafeText, out outer)) spar.Precisione = outer; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
+            if (double.TryParse(txrTPrecisione.SafeText, out outer)) tpar.Precisione = outer; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
             else
             {
                 MessageBox.Show("Precision della Bisezione non valida", "Valore non valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -61,51 +61,40 @@ namespace MyGeoCoso
             return status;
         }   //Preleva i dati dalla form e ne controlla tutti i valori
 
-        private void DisegnaSecante(object sender, EventArgs e)
+        private void DisegnaTagenti(object sender, EventArgs e)
         {
-            spar.Clear();   //Riporta tutti i dati a zero
-            if (_disegnato && PrelevaSecanti())   //Se vi è una funzione rappresentata e tutti i dati sono presi correttamente
+            tpar.Clear();   //Ripulisco i parametri
+            if (_disegnato && PrelevaTagente())   //Se vi è una funzione rappresentata e tutti i dati sono presi correttamente
             {
                 int n = 0;  //Contatore
-                bool individuato = false;   //Individua se è possibile eseguire almeno una volta una rilevazione
+                bool individuato = false;   //Indica se ho potuto fare almeno una rilevazione
 
-                do  //Questa volta procedo con un DO-WHILE per poter eseguire almeno una volta una rivazione
+                do
                 {
-                    if (Discordi(spar.Fa, spar.Fb)) //Se Fa e Fb discordi procedo 
+                    tpar.Elabora(); //Elabora il calcolo della tangente
+                    if (!double.IsInfinity(tpar.X)) //Se è possibile trovare una coincidenza fra la tangente e l'asse delle ascisse 
                     {
-                        spar.Elabora(); //Elaboro la secante
-                        DisegnaPunto(spar.A, spar.Fa, Color.DarkRed);   //Disegno A
-                        DisegnaPunto(spar.B, spar.Fb, Color.DarkRed);   //Disegno B
-                        DisegnaSecante(Color.Blue); //Disegno la secante
+                        DisegnaPunto(tpar.A, tpar.Fa, Color.DarkRed);   //Disegno A
+                        DisegnaPunto(tpar.B, tpar.Fb, Color.DarkRed);   //Disegno B
+                        DisegnaTangente(Color.Blue);    //Disegno tangente presente fra i parametri
+                        DisegnaPunto(tpar.X, tpar.Fx, Color.Green); //Disegno punto X sulla funzione
+                        DisegnaPunto(tpar.X, 0, Color.Yellow);  //Disegno punto X sulle ascisse
+                        individuato = true; //Individuato punto
 
-                        if (Discordi(spar.Fa, spar.Fx)) //Se F(a) e F(x) sono discodi
-                        {
-                            DisegnaPunto(spar.X, spar.Fx, Color.Green); //Disegno X
-                            individuato = true; //Individuato un punto
-                            spar.B = spar.X;    //X diventa B
-                        }
-                        else
-                        {
-                            if (Discordi(spar.Fb, spar.Fx)) //Se F(b) e F(x) sono discodi
-                            {
-                                DisegnaPunto(spar.X, spar.Fx, Color.Green);
-                                individuato = true; //Individuato un punto
-                                spar.A = spar.X;    //X diventa A
-                            }
-                        }
+                        tpar.A = tpar.X;    //Pongo X ad A
                     }
-                    n++;    //Prossimo giro
-                } while (n < spar.Cicli && ((spar.Fx <= (-(bpar.Precisione))) || (spar.Fx >= bpar.Precisione)));   //Fino a quando: (l'indice non supera il numero di giri) E (La funzione di C è compresa nella precisione maggiore o minore di zero)
+                    n++; //Prossimo giro
+                } while (n < tpar.Cicli && ((tpar.Fx <= (-(tpar.Precisione))) || (tpar.Fx >= tpar.Precisione)));   //Fino a quando: (l'indice non supera il numero di giri) E (La funzione di C è compresa nella precisione maggiore o minore di zero)
 
-                if (n < bpar.Cicli) //Se esco per la precisione
+                if (n < tpar.Cicli) //Se esco per la precisione
                 {
-                    DisegnaPunto(spar.X, spar.Fx, Color.Green); //Rappresenta l'ultimo punto con uscita per precisione
-                    individuato = true; //Individuato un punto
+                    DisegnaPunto(tpar.X, tpar.Fx, Color.Green); //Rappresenta l'ultimo punto con uscita per precisione
+                    individuato = true; //Individuato punto
                 }
 
-                if (individuato)    //Se ho trovato almeno un punto
+                if (individuato)    //Determina se è stat individuato almeno un punto
                 {
-                    MessageBox.Show("Il punto più vicino f(x)=0 è:\nC(" + spar.X + "," + spar.Fx + ")", "Risultato");
+                    MessageBox.Show("Il punto più vicino f(x)=0 è:\nC(" + tpar.X + "," + tpar.Fx + ")", "Risultato");
                 }
                 else
                 {
@@ -117,28 +106,32 @@ namespace MyGeoCoso
             {
                 MessageBox.Show("Rappresentare almeno una funzione", "Errore Funzione", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-        }
+        }   //Esegue il metodo Newtoniano
 
-        private void DisegnaSecante(Color colore)
+        private void DisegnaTangente(Color colore)
         {
             try
             {
-                graph._drawFunction(spar.Secante, 500, new Pen(colore, 1f));   //Disegno la funzione con precisione di 500 punti e penna color rosso scuro
+                graph._drawFunction(tpar.Tangente, 500, new Pen(colore, 1f));   //Disegno la funzione con precisione di 500 punti e penna color rosso scuro
             }
             catch (Exception e) { } //Nonostante le innumerevoli prove, non sono riuscito a individuare il tipo di eccezione
-        }   //Disegna la secante presente in spar
+        }   //Disegna la tangente in tpar
     }
 
-    public class SecantiParametr
+    /// <summary>
+    /// Descrive i parametri  per eseguire il calcolo delle tangenti
+    /// </summary>
+    public class TagentiParametr
     {
         //Campi
         private double _a;
         private double _b;
         private double _fa;
         private double _fb;
+        private double _inc;
         private double _q;
         private double _m;
-        private string _retta;
+        private string _tan;
         private double _x;
         private double _fx;
         private ExpressionParser _parser;
@@ -147,9 +140,9 @@ namespace MyGeoCoso
         private int _cicli;
 
         //Costruttore
-        public SecantiParametr()
+        public TagentiParametr()
         {
-            Clear();    //Setta a zero tutto
+            Clear();    //setta il default
         }
 
         //Proprietà
@@ -219,11 +212,11 @@ namespace MyGeoCoso
         }
 
         /// <summary>
-        /// Retta secante ad A e B
+        /// Riporta la funzione che rappresenta la tangente al punto A
         /// </summary>
-        public string Secante
+        public string Tangente
         {
-            get { return _retta; }
+            get { return _tan; }
         }
 
         /// <summary>
@@ -262,7 +255,7 @@ namespace MyGeoCoso
 
         //Metodi
         /// <summary>
-        /// Permetta la pulizia della classe
+        /// Pulisce i parametri
         /// </summary>
         public void Clear()
         {
@@ -270,9 +263,8 @@ namespace MyGeoCoso
             _b = 0;
             _fa = 0;
             _fb = 0;
-            _q = 0;
-            _m = 0;
-            _retta = "";
+            _inc = 0;
+            _tan = "";
             _x = 0;
             _parser = new ExpressionParser();
             _funzione = "";
@@ -281,16 +273,22 @@ namespace MyGeoCoso
         }
 
         /// <summary>
-        /// Calcola la secante passante per A e B
+        /// La funzione esegue i calcoli necessari a individuare gli elementi per il calcolo della tangente
         /// </summary>
         public void Elabora()
         {
-            _q = q();   //Calcolo q
-            _m = m();   //Calcolo m
-            _x = (-(_q)) / _m;  //Vedi appunto in fondo ↓
-            _fx = fx(_x);   //X sulla funzione
-            _retta = "(" + _m + "x)+(" + _q + ")";
-        }   //Metodo che elabora la retta secante
+            _inc = RapportoIncrementale();  //Calcolo il rapporto incrementale
+            _x = (((_a * _inc) - _fa) / _inc);  //Derivo la coordinata delle Ascisse del punto della funzione con ordinate a 0
+            _fx = fx(_x);   //Calcolo la x sulla funzione
+            _tan = _inc + "x -(" + (_inc *_a) + ")+(" + _fa + ")";  //Descivo la funzione che rappresenta la funzione al punto
+        }
+
+        private double RapportoIncrementale()
+        {
+            double h = 0.0000000001d;   //Indica una h→0
+            double fxh = fx(_a + h);    //Uso una variabile di supporto per il controllo nel DEBUG
+            return (fxh - _fa) / h;  //Vedi gli appunti in fondo
+        }   //Calcola il rapporto incrementale in un punto
 
         private double fx(double x) //Funzione per il calcolo del valore di una variabile in un punto
         {
@@ -301,46 +299,27 @@ namespace MyGeoCoso
 
             return _parser.Parse(_funzione, table); //Calcolo il valore di x nella funzione
         }
-
-        private double q()
-        {
-            return -(((_a * (_fb - _fa)) / (_b - _a)) - _fa);
-        }   //Deriva la q della secante, mediante la formula riportata sotto ↓
-
-        private double m()
-        {
-            return (_fb - _fa) / (_b - _a);
-        }   //Deriva la m della secante, mediante la formula sotto riportata ↓
     }
 }
 
 /*///////////// APPUNTI MATEMATICI --- ROBA DA SECCHIONE /////////////////////
 //                                                                          //
-//         Questo commento contiene la riflessione per le secanti           //
+//         Questo commento contiene la riflessione per le tangenti          //
 //                                                                          //
 //                                                                          //
-//              Data una retta, se sappiamo che r: y=xm+q                   //
-//                                   allora:                                //
-//                                                                          //
-//                  0 = xm+q     quindi     x = -q/m                        //
-//                                                                          //
-//      Se partiamo dalla formula della retta passante per 2 punti          //
+//            Per cominciare partiamo dalla forumla di una retta            //
+//                        passante per un punto:                            //
 //                                                                          //
 //                                                                          //
-//                            Y-Y1     X-X1                                 //
-//                           ------ = ------                                //
-//                            Y2-Y1    X2-X1                                //
+//                         Y-Yb = f'(Xb) (X-Xb)                             //
 //                                                                          //
 //                                                                          //
-//                          Allora arriviamo a                              //
+/         a questo punto possiamo isolare l'elemento X dal resto con        //
 //                                                                          //
 //                                                                          //
-//                   X1(y2-y1)                                              //
-//                  ---------- -Y1                                          //
-//                     X2-X1                                                //
-//            X=-----------------------        A=x1,f(A)=Y1                 //
-//                      Y2-Y1                  B=x2,f(B)=Y2                 //
-//                     -------                                              //
-//                      X2-x1                                               //
+//                              Xb * f'(Xb) - Yb                            //
+//                         X = -------------------                          //
+//                                  f'(Xb)                                  //
+//                                                                          //
 //                                                                          //
 ////////////////////////////////////////////////////////////////////////////*/

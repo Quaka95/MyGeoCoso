@@ -16,43 +16,44 @@ namespace MyGeoCoso
     {
         private void DisegnaBisezione(object sender, EventArgs e)
         {
+            bpar.Clear();
             if (_disegnato && PrelevaBisezione())   //Se vi è una funzione rappresentata e tutti i dati sono presi correttamente
             {
-                int n = 0;
-                bool individuato = false;
+                int n = 0;  //Contatore
+                bool individuato = false;   //Indica se nel range si può eseguire almeno una rilevazione
 
                 while (n < bpar.Cicli && ((bpar.Fc <= (-(bpar.Precisione))) || (bpar.Fc >= bpar.Precisione)))   //Fino a quando: (l'indice non supera il numero di giri) E (La funzione di C è compresa nella precisione maggiore o minore di zero)
                 {
-                    bpar.C = (bpar.A + bpar.B) / 2;
-                    DisegnaPunto(bpar.A, bpar.Fa, Color.Red);
-                    DisegnaPunto(bpar.B, bpar.Fb, Color.Red);
+                    bpar.C = (bpar.A + bpar.B) / 2; //Trovo il punto medio
+                    DisegnaPunto(bpar.A, bpar.Fa, Color.Red);   //Disegno il punto A
+                    DisegnaPunto(bpar.B, bpar.Fb, Color.Red);   //Disegno il punto B
 
-                    if (Discordi(bpar.Fa, bpar.Fc))
+                    if (Discordi(bpar.Fa, bpar.Fc)) //Se A e C discordi
                     {
-                        individuato = true;
-                        bpar.B = bpar.C;
-                        DisegnaPunto(bpar.C, bpar.Fc, Color.Green);
+                        individuato = true; //Ho trovato qualcosa
+                        bpar.B = bpar.C;    //C diventa B
+                        DisegnaPunto(bpar.C, bpar.Fc, Color.Green); //Disegno C
                     }
                     else
                     {
-                        if (Discordi(bpar.Fb, bpar.Fc))
+                        if (Discordi(bpar.Fb, bpar.Fc)) //Se A e C discordi
                         {
-                            individuato = true;
-                            bpar.A = bpar.C;
-                            DisegnaPunto(bpar.C, bpar.Fc, Color.Green);
+                            individuato = true; //Ho trovato qualcosa
+                            bpar.A = bpar.C;    //C diventa A
+                            DisegnaPunto(bpar.C, bpar.Fc, Color.Green); //Disegno C
                         }
                     }
 
-                    n++;
+                    n++;    //Prossimo giro
                 }
 
-                if (n < bpar.Cicli)
+                if (n < bpar.Cicli) //Se ho raggiunto la precisione
                 {
                     DisegnaPunto(bpar.C, bpar.Fc, Color.Green); //Rappresenta l'ultimo punto con uscita per precisione
-                    individuato = true;
+                    individuato = true; //Indico che ho comunque trovato qualcosa
                 }
 
-                if (individuato)
+                if (individuato)    //Se ho trovato qualcosa
                 {
                     MessageBox.Show("Il punto più vicino f(x)=0 è:\nC(" + bpar.C + "," + bpar.Fc + ")","Risultato");
                 }
@@ -61,7 +62,12 @@ namespace MyGeoCoso
                     MessageBox.Show("Il range inserito non porta a nessun risultato","Range Errato",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
             }
-        }
+
+            if (!_disegnato)    //Se non è disegnato nulla
+            {
+                MessageBox.Show("Rappresentare almeno una funzione", "Errore Funzione", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }   //Esegue il metodo della Bissezione
 
         private bool PrelevaBisezione()
         {
@@ -127,33 +133,27 @@ namespace MyGeoCoso
         }   //Disegna un punto
     }
 
+    /// <summary>
+    /// Rappresenta i parametri per il metodo della bissezione
+    /// </summary>
     public class BisezioneParametr
     {
         //Parametri
-        private double _a = 0;
-        private double _b = 0;
-        private double _c = 0;
-        private double _fa = 0;
-        private double _fb = 0;
-        private double _fc = 0;
-        private double _precisione = 0;
-        private int _cicli = 0;
+        private double _a;
+        private double _b;
+        private double _c;
+        private double _fa;
+        private double _fb;
+        private double _fc;
+        private double _precisione;
+        private int _cicli;
         private string _funzione;
         private ExpressionParser _parser;
 
         //Costruttore
         public BisezioneParametr()
         {
-            _a = 0; //Valori di default
-            _b = 0;
-            _c = 0;
-            _fa = 0;
-            _fb = 0;
-            _fc = 0;
-            _precisione = 0;
-            _cicli = 0;
-            _funzione = "";
-            _parser = new ExpressionParser();
+            Clear(); //Inizializzo
         }
 
         //Proprietà
@@ -274,6 +274,23 @@ namespace MyGeoCoso
             table.Add("e", Math.E.ToString());  //imposto in e il numero di Nepero
 
             return _parser.Parse(f, table); //Calcolo il valore di x nella funzione
+        }
+
+        /// <summary>
+        /// Ripulisce i dati
+        /// </summary>
+        public void Clear()
+        {
+            _a = 0; //Valori di default
+            _b = 0;
+            _c = 0;
+            _fa = 0;
+            _fb = 0;
+            _fc = 0;
+            _precisione = 0;
+            _cicli = 0;
+            _funzione = "";
+            _parser = new ExpressionParser();
         }
     }
 }
