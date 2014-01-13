@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -59,13 +59,13 @@ namespace MyGeoCoso
                 }
                 else
                 {
-                    MessageBox.Show("Il range inserito non porta a nessun risultato","Range Errato",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    Errore("Il range inserito non porta a nessun risultato", "Range Errato");
                 }
             }
 
             if (!_disegnato)    //Se non è disegnato nulla
             {
-                MessageBox.Show("Rappresentare almeno una funzione", "Errore Funzione", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Errore("Rappresentare almeno una funzione", "Errore Funzione");
             }
         }   //Esegue il metodo della Bissezione
 
@@ -88,29 +88,25 @@ namespace MyGeoCoso
             if (double.TryParse(txrBXa.SafeText, out outer)) bpar.A = outer; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
             else
             {
-                MessageBox.Show("Valore di A non valido", "Valore non valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                status = false;
+                status = Errore("Valore di A non valido", "Valore non valido");
             }
 
             if (double.TryParse(txrBXb.SafeText, out outer)) bpar.B = outer; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
             else
             {
-                MessageBox.Show("Valore di B non valido", "Valore non valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                status = false;
+                status = Errore("Valore di B non valido", "Valore non valido");
             }
 
             if (int.TryParse(txrBCicli.SafeText, out iouter) && iouter>0) bpar.Cicli = iouter; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
             else
             {
-                MessageBox.Show("Valore dei cicli non valido", "Valore non valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                status = false;
+                status = Errore("Valore dei cicli non valido", "Valore non valido");
             }
 
             if (double.TryParse(txrBPrecisione.SafeText, out outer)) bpar.Precisione = outer; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
             else
             {
-                MessageBox.Show("Precision della Bisezione non valida", "Valore non valido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                status = false;
+                status = Errore("Precision della Bisezione non valida", "Valore non valido");
             }
 
             return status;
@@ -131,6 +127,12 @@ namespace MyGeoCoso
         {
             graph._drawPoint(x, y, GraphPointSize.Small, GraphPointStyle.Circle, colore);
         }   //Disegna un punto
+
+        private bool Errore(string message,string titolo)
+        {
+            MessageBox.Show(message, titolo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return false;
+        }
     }
 
     /// <summary>
