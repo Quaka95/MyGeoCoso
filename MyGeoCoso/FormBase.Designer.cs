@@ -32,7 +32,7 @@
             this.graph = new Mate.Graph.Graph();
             this.txtFunzione = new System.Windows.Forms.TextBox();
             this.btnDisegna = new System.Windows.Forms.Button();
-            this.tabBase = new System.Windows.Forms.TabControl();
+            this.btnIntegra = new System.Windows.Forms.TabControl();
             this.tabParametri = new System.Windows.Forms.TabPage();
             this.btnSvuota = new System.Windows.Forms.Button();
             this.lblDelY = new System.Windows.Forms.Label();
@@ -77,12 +77,27 @@
             this.txrTXb = new Mate.TextRegex.TextRegex();
             this.txrTPrecisione = new Mate.TextRegex.TextRegex();
             this.txrTCicli = new Mate.TextRegex.TextRegex();
+            this.tabIntegrale = new System.Windows.Forms.TabPage();
+            this.numIDivisioni = new System.Windows.Forms.NumericUpDown();
+            this.lblIDivisioni = new System.Windows.Forms.Label();
+            this.groupIDisegna = new System.Windows.Forms.GroupBox();
+            this.checkTrap = new System.Windows.Forms.CheckBox();
+            this.checkRetMin = new System.Windows.Forms.CheckBox();
+            this.checkRetMag = new System.Windows.Forms.CheckBox();
+            this.lblIXa = new System.Windows.Forms.Label();
+            this.lblIXb = new System.Windows.Forms.Label();
+            this.txrIXa = new Mate.TextRegex.TextRegex();
+            this.txrIXb = new Mate.TextRegex.TextRegex();
             this.lblFunzione = new System.Windows.Forms.Label();
-            this.tabBase.SuspendLayout();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnIntegra.SuspendLayout();
             this.tabParametri.SuspendLayout();
             this.tabBisezione.SuspendLayout();
             this.tabSecanti.SuspendLayout();
             this.tabTangenti.SuspendLayout();
+            this.tabIntegrale.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numIDivisioni)).BeginInit();
+            this.groupIDisegna.SuspendLayout();
             this.SuspendLayout();
             // 
             // graph
@@ -118,18 +133,19 @@
             this.btnDisegna.UseVisualStyleBackColor = true;
             this.btnDisegna.Click += new System.EventHandler(this.DisegnaClick);
             // 
-            // tabBase
+            // btnIntegra
             // 
-            this.tabBase.Controls.Add(this.tabParametri);
-            this.tabBase.Controls.Add(this.tabBisezione);
-            this.tabBase.Controls.Add(this.tabSecanti);
-            this.tabBase.Controls.Add(this.tabTangenti);
-            this.tabBase.HotTrack = true;
-            this.tabBase.Location = new System.Drawing.Point(362, 38);
-            this.tabBase.Name = "tabBase";
-            this.tabBase.SelectedIndex = 0;
-            this.tabBase.Size = new System.Drawing.Size(400, 322);
-            this.tabBase.TabIndex = 2;
+            this.btnIntegra.Controls.Add(this.tabParametri);
+            this.btnIntegra.Controls.Add(this.tabBisezione);
+            this.btnIntegra.Controls.Add(this.tabSecanti);
+            this.btnIntegra.Controls.Add(this.tabTangenti);
+            this.btnIntegra.Controls.Add(this.tabIntegrale);
+            this.btnIntegra.HotTrack = true;
+            this.btnIntegra.Location = new System.Drawing.Point(362, 38);
+            this.btnIntegra.Name = "btnIntegra";
+            this.btnIntegra.SelectedIndex = 0;
+            this.btnIntegra.Size = new System.Drawing.Size(400, 322);
+            this.btnIntegra.TabIndex = 2;
             // 
             // tabParametri
             // 
@@ -575,6 +591,136 @@
             this.txrTCicli.Size = new System.Drawing.Size(120, 20);
             this.txrTCicli.TabIndex = 6;
             // 
+            // tabIntegrale
+            // 
+            this.tabIntegrale.Controls.Add(this.button1);
+            this.tabIntegrale.Controls.Add(this.numIDivisioni);
+            this.tabIntegrale.Controls.Add(this.lblIDivisioni);
+            this.tabIntegrale.Controls.Add(this.groupIDisegna);
+            this.tabIntegrale.Controls.Add(this.lblIXa);
+            this.tabIntegrale.Controls.Add(this.lblIXb);
+            this.tabIntegrale.Controls.Add(this.txrIXa);
+            this.tabIntegrale.Controls.Add(this.txrIXb);
+            this.tabIntegrale.Location = new System.Drawing.Point(4, 22);
+            this.tabIntegrale.Name = "tabIntegrale";
+            this.tabIntegrale.Padding = new System.Windows.Forms.Padding(3);
+            this.tabIntegrale.Size = new System.Drawing.Size(392, 296);
+            this.tabIntegrale.TabIndex = 4;
+            this.tabIntegrale.Text = "Integrale";
+            this.tabIntegrale.UseVisualStyleBackColor = true;
+            // 
+            // numIDivisioni
+            // 
+            this.numIDivisioni.Location = new System.Drawing.Point(119, 109);
+            this.numIDivisioni.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numIDivisioni.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numIDivisioni.Name = "numIDivisioni";
+            this.numIDivisioni.Size = new System.Drawing.Size(120, 20);
+            this.numIDivisioni.TabIndex = 27;
+            this.numIDivisioni.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblIDivisioni
+            // 
+            this.lblIDivisioni.AutoSize = true;
+            this.lblIDivisioni.Location = new System.Drawing.Point(54, 111);
+            this.lblIDivisioni.Name = "lblIDivisioni";
+            this.lblIDivisioni.Size = new System.Drawing.Size(49, 13);
+            this.lblIDivisioni.TabIndex = 26;
+            this.lblIDivisioni.Text = "Divisioni:";
+            // 
+            // groupIDisegna
+            // 
+            this.groupIDisegna.Controls.Add(this.checkTrap);
+            this.groupIDisegna.Controls.Add(this.checkRetMin);
+            this.groupIDisegna.Controls.Add(this.checkRetMag);
+            this.groupIDisegna.Location = new System.Drawing.Point(57, 165);
+            this.groupIDisegna.Name = "groupIDisegna";
+            this.groupIDisegna.Size = new System.Drawing.Size(126, 88);
+            this.groupIDisegna.TabIndex = 25;
+            this.groupIDisegna.TabStop = false;
+            this.groupIDisegna.Text = "Disegna";
+            // 
+            // checkTrap
+            // 
+            this.checkTrap.AutoSize = true;
+            this.checkTrap.Location = new System.Drawing.Point(6, 65);
+            this.checkTrap.Name = "checkTrap";
+            this.checkTrap.Size = new System.Drawing.Size(61, 17);
+            this.checkTrap.TabIndex = 2;
+            this.checkTrap.Text = "Trapezi";
+            this.checkTrap.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkTrap.UseVisualStyleBackColor = true;
+            // 
+            // checkRetMin
+            // 
+            this.checkRetMin.AutoSize = true;
+            this.checkRetMin.Location = new System.Drawing.Point(6, 42);
+            this.checkRetMin.Name = "checkRetMin";
+            this.checkRetMin.Size = new System.Drawing.Size(105, 17);
+            this.checkRetMin.TabIndex = 1;
+            this.checkRetMin.Text = "Rettangoli Minori";
+            this.checkRetMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkRetMin.UseVisualStyleBackColor = true;
+            // 
+            // checkRetMag
+            // 
+            this.checkRetMag.AutoSize = true;
+            this.checkRetMag.Location = new System.Drawing.Point(6, 19);
+            this.checkRetMag.Name = "checkRetMag";
+            this.checkRetMag.Size = new System.Drawing.Size(117, 17);
+            this.checkRetMag.TabIndex = 0;
+            this.checkRetMag.Text = "Rettangoli Maggiori";
+            this.checkRetMag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkRetMag.UseVisualStyleBackColor = true;
+            // 
+            // lblIXa
+            // 
+            this.lblIXa.AutoSize = true;
+            this.lblIXa.Location = new System.Drawing.Point(54, 61);
+            this.lblIXa.Name = "lblIXa";
+            this.lblIXa.Size = new System.Drawing.Size(26, 13);
+            this.lblIXa.TabIndex = 23;
+            this.lblIXa.Text = "Xa: ";
+            // 
+            // lblIXb
+            // 
+            this.lblIXb.AutoSize = true;
+            this.lblIXb.Location = new System.Drawing.Point(54, 87);
+            this.lblIXb.Name = "lblIXb";
+            this.lblIXb.Size = new System.Drawing.Size(26, 13);
+            this.lblIXb.TabIndex = 24;
+            this.lblIXb.Text = "Xb: ";
+            // 
+            // txrIXa
+            // 
+            this.txrIXa.Location = new System.Drawing.Point(119, 54);
+            this.txrIXa.Name = "txrIXa";
+            this.txrIXa.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
+            this.txrIXa.SafeText = "1";
+            this.txrIXa.Size = new System.Drawing.Size(120, 20);
+            this.txrIXa.TabIndex = 21;
+            // 
+            // txrIXb
+            // 
+            this.txrIXb.Location = new System.Drawing.Point(119, 80);
+            this.txrIXb.Name = "txrIXb";
+            this.txrIXb.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
+            this.txrIXb.SafeText = "2";
+            this.txrIXb.Size = new System.Drawing.Size(120, 20);
+            this.txrIXb.TabIndex = 22;
+            // 
             // lblFunzione
             // 
             this.lblFunzione.AutoSize = true;
@@ -584,6 +730,15 @@
             this.lblFunzione.TabIndex = 7;
             this.lblFunzione.Text = "f(x):";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(259, 207);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Integra";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // FormBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -591,7 +746,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(762, 361);
             this.Controls.Add(this.lblFunzione);
-            this.Controls.Add(this.tabBase);
+            this.Controls.Add(this.btnIntegra);
             this.Controls.Add(this.btnDisegna);
             this.Controls.Add(this.txtFunzione);
             this.Controls.Add(this.graph);
@@ -600,7 +755,7 @@
             this.Name = "FormBase";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyGeoCoso";
-            this.tabBase.ResumeLayout(false);
+            this.btnIntegra.ResumeLayout(false);
             this.tabParametri.ResumeLayout(false);
             this.tabParametri.PerformLayout();
             this.tabBisezione.ResumeLayout(false);
@@ -609,6 +764,11 @@
             this.tabSecanti.PerformLayout();
             this.tabTangenti.ResumeLayout(false);
             this.tabTangenti.PerformLayout();
+            this.tabIntegrale.ResumeLayout(false);
+            this.tabIntegrale.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numIDivisioni)).EndInit();
+            this.groupIDisegna.ResumeLayout(false);
+            this.groupIDisegna.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -625,7 +785,7 @@
         private Mate.TextRegex.TextRegex txrDelY;
         private System.Windows.Forms.TextBox txtFunzione;
         private System.Windows.Forms.Button btnDisegna;
-        private System.Windows.Forms.TabControl tabBase;
+        private System.Windows.Forms.TabControl btnIntegra;
         private System.Windows.Forms.TabPage tabParametri;
         private System.Windows.Forms.Label lblFunzione;
         private System.Windows.Forms.Label lblDelY;
@@ -665,6 +825,18 @@
         private Mate.TextRegex.TextRegex txrTXb;
         private Mate.TextRegex.TextRegex txrTPrecisione;
         private Mate.TextRegex.TextRegex txrTCicli;
+        private System.Windows.Forms.TabPage tabIntegrale;
+        private System.Windows.Forms.Label lblIXa;
+        private System.Windows.Forms.Label lblIXb;
+        private Mate.TextRegex.TextRegex txrIXa;
+        private Mate.TextRegex.TextRegex txrIXb;
+        private System.Windows.Forms.GroupBox groupIDisegna;
+        private System.Windows.Forms.CheckBox checkTrap;
+        private System.Windows.Forms.CheckBox checkRetMin;
+        private System.Windows.Forms.CheckBox checkRetMag;
+        private System.Windows.Forms.NumericUpDown numIDivisioni;
+        private System.Windows.Forms.Label lblIDivisioni;
+        private System.Windows.Forms.Button button1;
     }
 }
 

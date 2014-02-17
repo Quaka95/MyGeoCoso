@@ -42,5 +42,10 @@ namespace MyGeoCoso
 
             return _parser.Parse(f, table); //Calcolo il valore di x nella funzione
         }
+
+        private void DisegnaTagenti(object sender, EventArgs e)
+        {
+
+        }
     }
 }
