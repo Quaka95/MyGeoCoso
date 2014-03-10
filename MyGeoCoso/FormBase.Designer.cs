@@ -78,6 +78,7 @@
             this.txrTPrecisione = new Mate.TextRegex.TextRegex();
             this.txrTCicli = new Mate.TextRegex.TextRegex();
             this.tabIntegrale = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.numIDivisioni = new System.Windows.Forms.NumericUpDown();
             this.lblIDivisioni = new System.Windows.Forms.Label();
             this.groupIDisegna = new System.Windows.Forms.GroupBox();
@@ -89,7 +90,6 @@
             this.txrIXa = new Mate.TextRegex.TextRegex();
             this.txrIXb = new Mate.TextRegex.TextRegex();
             this.lblFunzione = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnIntegra.SuspendLayout();
             this.tabParametri.SuspendLayout();
             this.tabBisezione.SuspendLayout();
@@ -120,7 +120,7 @@
             this.txtFunzione.Name = "txtFunzione";
             this.txtFunzione.Size = new System.Drawing.Size(273, 20);
             this.txtFunzione.TabIndex = 0;
-            this.txtFunzione.Text = "(x^2)-2";
+            this.txtFunzione.Text = "x";
             this.txtFunzione.TextChanged += new System.EventHandler(this.ControlloMinuscolo);
             // 
             // btnDisegna
@@ -358,7 +358,7 @@
             this.txrBXa.Location = new System.Drawing.Point(183, 54);
             this.txrBXa.Name = "txrBXa";
             this.txrBXa.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
-            this.txrBXa.SafeText = "1";
+            this.txrBXa.SafeText = "-2";
             this.txrBXa.Size = new System.Drawing.Size(120, 20);
             this.txrBXa.TabIndex = 3;
             // 
@@ -459,7 +459,7 @@
             this.txrSXa.Location = new System.Drawing.Point(183, 54);
             this.txrSXa.Name = "txrSXa";
             this.txrSXa.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
-            this.txrSXa.SafeText = "1";
+            this.txrSXa.SafeText = "-2";
             this.txrSXa.Size = new System.Drawing.Size(120, 20);
             this.txrSXa.TabIndex = 3;
             // 
@@ -560,7 +560,7 @@
             this.txrTXa.Location = new System.Drawing.Point(183, 54);
             this.txrTXa.Name = "txrTXa";
             this.txrTXa.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
-            this.txrTXa.SafeText = "1";
+            this.txrTXa.SafeText = "-2";
             this.txrTXa.Size = new System.Drawing.Size(120, 20);
             this.txrTXa.TabIndex = 3;
             // 
@@ -609,6 +609,15 @@
             this.tabIntegrale.Text = "Integrale";
             this.tabIntegrale.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(259, 207);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Integra";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // numIDivisioni
             // 
             this.numIDivisioni.Location = new System.Drawing.Point(119, 109);
@@ -624,7 +633,7 @@
             0});
             this.numIDivisioni.Name = "numIDivisioni";
             this.numIDivisioni.Size = new System.Drawing.Size(120, 20);
-            this.numIDivisioni.TabIndex = 27;
+            this.numIDivisioni.TabIndex = 5;
             this.numIDivisioni.Value = new decimal(new int[] {
             1,
             0,
@@ -648,7 +657,7 @@
             this.groupIDisegna.Location = new System.Drawing.Point(57, 165);
             this.groupIDisegna.Name = "groupIDisegna";
             this.groupIDisegna.Size = new System.Drawing.Size(126, 88);
-            this.groupIDisegna.TabIndex = 25;
+            this.groupIDisegna.TabIndex = 6;
             this.groupIDisegna.TabStop = false;
             this.groupIDisegna.Text = "Disegna";
             // 
@@ -677,6 +686,8 @@
             // checkRetMag
             // 
             this.checkRetMag.AutoSize = true;
+            this.checkRetMag.Checked = true;
+            this.checkRetMag.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkRetMag.Location = new System.Drawing.Point(6, 19);
             this.checkRetMag.Name = "checkRetMag";
             this.checkRetMag.Size = new System.Drawing.Size(117, 17);
@@ -708,18 +719,18 @@
             this.txrIXa.Location = new System.Drawing.Point(119, 54);
             this.txrIXa.Name = "txrIXa";
             this.txrIXa.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
-            this.txrIXa.SafeText = "1";
+            this.txrIXa.SafeText = "0";
             this.txrIXa.Size = new System.Drawing.Size(120, 20);
-            this.txrIXa.TabIndex = 21;
+            this.txrIXa.TabIndex = 3;
             // 
             // txrIXb
             // 
             this.txrIXb.Location = new System.Drawing.Point(119, 80);
             this.txrIXb.Name = "txrIXb";
             this.txrIXb.Regex = "[-+]?[0-9]*[.|,]?[0-9]*";
-            this.txrIXb.SafeText = "2";
+            this.txrIXb.SafeText = "5";
             this.txrIXb.Size = new System.Drawing.Size(120, 20);
-            this.txrIXb.TabIndex = 22;
+            this.txrIXb.TabIndex = 4;
             // 
             // lblFunzione
             // 
@@ -729,15 +740,6 @@
             this.lblFunzione.Size = new System.Drawing.Size(24, 13);
             this.lblFunzione.TabIndex = 7;
             this.lblFunzione.Text = "f(x):";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(259, 207);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "Integra";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // FormBase
             // 
