@@ -32,7 +32,7 @@
             this.graph = new Mate.Graph.Graph();
             this.txtFunzione = new System.Windows.Forms.TextBox();
             this.btnDisegna = new System.Windows.Forms.Button();
-            this.btnIntegra = new System.Windows.Forms.TabControl();
+            this.TabPanFunzioni = new System.Windows.Forms.TabControl();
             this.tabParametri = new System.Windows.Forms.TabPage();
             this.btnSvuota = new System.Windows.Forms.Button();
             this.lblDelY = new System.Windows.Forms.Label();
@@ -78,7 +78,7 @@
             this.txrTPrecisione = new Mate.TextRegex.TextRegex();
             this.txrTCicli = new Mate.TextRegex.TextRegex();
             this.tabIntegrale = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnIntegra = new System.Windows.Forms.Button();
             this.numIDivisioni = new System.Windows.Forms.NumericUpDown();
             this.lblIDivisioni = new System.Windows.Forms.Label();
             this.groupIDisegna = new System.Windows.Forms.GroupBox();
@@ -90,7 +90,7 @@
             this.txrIXa = new Mate.TextRegex.TextRegex();
             this.txrIXb = new Mate.TextRegex.TextRegex();
             this.lblFunzione = new System.Windows.Forms.Label();
-            this.btnIntegra.SuspendLayout();
+            this.TabPanFunzioni.SuspendLayout();
             this.tabParametri.SuspendLayout();
             this.tabBisezione.SuspendLayout();
             this.tabSecanti.SuspendLayout();
@@ -133,19 +133,19 @@
             this.btnDisegna.UseVisualStyleBackColor = true;
             this.btnDisegna.Click += new System.EventHandler(this.DisegnaClick);
             // 
-            // btnIntegra
+            // TabPanFunzioni
             // 
-            this.btnIntegra.Controls.Add(this.tabParametri);
-            this.btnIntegra.Controls.Add(this.tabBisezione);
-            this.btnIntegra.Controls.Add(this.tabSecanti);
-            this.btnIntegra.Controls.Add(this.tabTangenti);
-            this.btnIntegra.Controls.Add(this.tabIntegrale);
-            this.btnIntegra.HotTrack = true;
-            this.btnIntegra.Location = new System.Drawing.Point(362, 38);
-            this.btnIntegra.Name = "btnIntegra";
-            this.btnIntegra.SelectedIndex = 0;
-            this.btnIntegra.Size = new System.Drawing.Size(400, 322);
-            this.btnIntegra.TabIndex = 2;
+            this.TabPanFunzioni.Controls.Add(this.tabParametri);
+            this.TabPanFunzioni.Controls.Add(this.tabBisezione);
+            this.TabPanFunzioni.Controls.Add(this.tabSecanti);
+            this.TabPanFunzioni.Controls.Add(this.tabTangenti);
+            this.TabPanFunzioni.Controls.Add(this.tabIntegrale);
+            this.TabPanFunzioni.HotTrack = true;
+            this.TabPanFunzioni.Location = new System.Drawing.Point(362, 38);
+            this.TabPanFunzioni.Name = "TabPanFunzioni";
+            this.TabPanFunzioni.SelectedIndex = 0;
+            this.TabPanFunzioni.Size = new System.Drawing.Size(400, 322);
+            this.TabPanFunzioni.TabIndex = 2;
             // 
             // tabParametri
             // 
@@ -593,7 +593,7 @@
             // 
             // tabIntegrale
             // 
-            this.tabIntegrale.Controls.Add(this.button1);
+            this.tabIntegrale.Controls.Add(this.btnIntegra);
             this.tabIntegrale.Controls.Add(this.numIDivisioni);
             this.tabIntegrale.Controls.Add(this.lblIDivisioni);
             this.tabIntegrale.Controls.Add(this.groupIDisegna);
@@ -609,20 +609,21 @@
             this.tabIntegrale.Text = "Integrale";
             this.tabIntegrale.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnIntegra
             // 
-            this.button1.Location = new System.Drawing.Point(259, 207);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Integra";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnIntegra.Location = new System.Drawing.Point(259, 207);
+            this.btnIntegra.Name = "btnIntegra";
+            this.btnIntegra.Size = new System.Drawing.Size(75, 23);
+            this.btnIntegra.TabIndex = 7;
+            this.btnIntegra.Text = "Integra";
+            this.btnIntegra.UseVisualStyleBackColor = true;
+            this.btnIntegra.Click += new System.EventHandler(this.DisegnaIntegrale);
             // 
             // numIDivisioni
             // 
             this.numIDivisioni.Location = new System.Drawing.Point(119, 109);
             this.numIDivisioni.Maximum = new decimal(new int[] {
-            10000,
+            100000,
             0,
             0,
             0});
@@ -748,7 +749,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(762, 361);
             this.Controls.Add(this.lblFunzione);
-            this.Controls.Add(this.btnIntegra);
+            this.Controls.Add(this.TabPanFunzioni);
             this.Controls.Add(this.btnDisegna);
             this.Controls.Add(this.txtFunzione);
             this.Controls.Add(this.graph);
@@ -757,7 +758,7 @@
             this.Name = "FormBase";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyGeoCoso";
-            this.btnIntegra.ResumeLayout(false);
+            this.TabPanFunzioni.ResumeLayout(false);
             this.tabParametri.ResumeLayout(false);
             this.tabParametri.PerformLayout();
             this.tabBisezione.ResumeLayout(false);
@@ -787,7 +788,7 @@
         private Mate.TextRegex.TextRegex txrDelY;
         private System.Windows.Forms.TextBox txtFunzione;
         private System.Windows.Forms.Button btnDisegna;
-        private System.Windows.Forms.TabControl btnIntegra;
+        private System.Windows.Forms.TabControl TabPanFunzioni;
         private System.Windows.Forms.TabPage tabParametri;
         private System.Windows.Forms.Label lblFunzione;
         private System.Windows.Forms.Label lblDelY;
@@ -838,7 +839,7 @@
         private System.Windows.Forms.CheckBox checkRetMag;
         private System.Windows.Forms.NumericUpDown numIDivisioni;
         private System.Windows.Forms.Label lblIDivisioni;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnIntegra;
     }
 }
 

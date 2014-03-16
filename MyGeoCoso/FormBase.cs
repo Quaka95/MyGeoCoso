@@ -18,6 +18,7 @@ namespace MyGeoCoso
         BisezioneParametr bpar;
         SecantiParametr spar;
         TagentiParametr tpar;
+        IntegraliParametr ipar;
         ExpressionParser _parser;
         bool _disegnato = false;
 
@@ -29,6 +30,7 @@ namespace MyGeoCoso
             bpar = new BisezioneParametr();
             spar = new SecantiParametr();
             tpar = new TagentiParametr();
+            ipar = new IntegraliParametr();
             _parser = new ExpressionParser();
         }
 
