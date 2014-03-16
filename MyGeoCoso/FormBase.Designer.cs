@@ -78,6 +78,8 @@
             this.txrTPrecisione = new Mate.TextRegex.TextRegex();
             this.txrTCicli = new Mate.TextRegex.TextRegex();
             this.tabIntegrale = new System.Windows.Forms.TabPage();
+            this.btnIPulisci = new System.Windows.Forms.Button();
+            this.btnIRidisegna = new System.Windows.Forms.Button();
             this.btnIntegra = new System.Windows.Forms.Button();
             this.numIDivisioni = new System.Windows.Forms.NumericUpDown();
             this.lblIDivisioni = new System.Windows.Forms.Label();
@@ -593,6 +595,8 @@
             // 
             // tabIntegrale
             // 
+            this.tabIntegrale.Controls.Add(this.btnIPulisci);
+            this.tabIntegrale.Controls.Add(this.btnIRidisegna);
             this.tabIntegrale.Controls.Add(this.btnIntegra);
             this.tabIntegrale.Controls.Add(this.numIDivisioni);
             this.tabIntegrale.Controls.Add(this.lblIDivisioni);
@@ -609,9 +613,29 @@
             this.tabIntegrale.Text = "Integrale";
             this.tabIntegrale.UseVisualStyleBackColor = true;
             // 
+            // btnIPulisci
+            // 
+            this.btnIPulisci.Location = new System.Drawing.Point(228, 236);
+            this.btnIPulisci.Name = "btnIPulisci";
+            this.btnIPulisci.Size = new System.Drawing.Size(75, 35);
+            this.btnIPulisci.TabIndex = 8;
+            this.btnIPulisci.Text = "Pulisci";
+            this.btnIPulisci.UseVisualStyleBackColor = true;
+            this.btnIPulisci.Click += new System.EventHandler(this.PulisciGrafico);
+            // 
+            // btnIRidisegna
+            // 
+            this.btnIRidisegna.Location = new System.Drawing.Point(309, 236);
+            this.btnIRidisegna.Name = "btnIRidisegna";
+            this.btnIRidisegna.Size = new System.Drawing.Size(75, 35);
+            this.btnIRidisegna.TabIndex = 9;
+            this.btnIRidisegna.Text = "Pulisci e Ridisegna";
+            this.btnIRidisegna.UseVisualStyleBackColor = true;
+            this.btnIRidisegna.Click += new System.EventHandler(this.PulisciRidisegna);
+            // 
             // btnIntegra
             // 
-            this.btnIntegra.Location = new System.Drawing.Point(259, 207);
+            this.btnIntegra.Location = new System.Drawing.Point(268, 201);
             this.btnIntegra.Name = "btnIntegra";
             this.btnIntegra.Size = new System.Drawing.Size(75, 23);
             this.btnIntegra.TabIndex = 7;
@@ -840,6 +864,8 @@
         private System.Windows.Forms.NumericUpDown numIDivisioni;
         private System.Windows.Forms.Label lblIDivisioni;
         private System.Windows.Forms.Button btnIntegra;
+        private System.Windows.Forms.Button btnIRidisegna;
+        private System.Windows.Forms.Button btnIPulisci;
     }
 }
 

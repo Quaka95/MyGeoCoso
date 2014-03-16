@@ -21,13 +21,21 @@ namespace MyGeoCoso
             {
                 if (ipar.RettangoliMaggiori || ipar.RettangoliMinori || ipar.Trapezii)
                 {
-                    double iretMax = -1d;
-                    double iretMin = -1d;
-                    double itrap = -1d;
+                    double retMag;
+                    double retMin;
+                    string msg = "L'integrale calcolato con il metodo:\n";
+
+                    retMag = CalcolaRettangoliMaggiori(Color.Blue);
+                    retMin = CalcolaRettangoliMinori(Color.Red);
+
+                    msg += (ipar.RettangoliMaggiori) ? "Rettangoli circoscritti: " + retMag.ToString() + "\n" : "";
+                    msg += (ipar.RettangoliMinori) ? "Rettangoli inscritti: " + retMin.ToString() + "\n" : "";
+
+                    MessageBox.Show(msg, "Risultato");
                 }
                 else
                 {
-                    Errore("Nessun metodo per il calcolo dell'integrale selezionato","Errore Selezione");
+                    Errore("Nessun metodo per il calcolo dell'integrale selezionato", "Errore Selezione");
                 }
             }
 
@@ -35,6 +43,132 @@ namespace MyGeoCoso
             {
                 Errore("Rappresentare almeno una funzione", "Errore Funzione");
             }
+        }
+
+        private double CalcolaRettangoliMaggiori(Color Colore)
+        {
+            double a = (ipar.A < ipar.B) ? ipar.A : ipar.B;
+            double b = (ipar.A > ipar.B) ? ipar.A : ipar.B;
+            double incrm = (b - a) / ipar.Divisioni;
+            bool positivo;
+            double lmInf;
+            double lmSup = a;
+
+            double area = 0;
+
+            for (int i = 0; i < ipar.Divisioni; i++)
+            {
+                lmInf = lmSup;
+                lmSup = a + ((i + 1) * incrm);
+
+                if (!Discordi(lmInf, lmSup, ipar.Funzione, true))
+                {
+                    positivo = (fx(lmInf, ipar.Funzione) >= 0);
+                    double val = (positivo) ? MassimoFunzione(ipar.Funzione, lmInf, lmSup) : MinimoFunzione(ipar.Funzione, lmInf, lmSup);
+                    val = (!positivo) ? Modulo(val) : val;
+
+                    if (ipar.RettangoliMaggiori)
+                    {
+                        if (val != 0)
+                        {
+                            DisegnaRettangolo(lmInf, 0, incrm, val, Colore, positivo);
+                            area += incrm * val;
+                        }
+                    }
+                }
+            }
+
+            return area;
+        }
+
+        private double CalcolaRettangoliMinori(Color Colore)
+        {
+            double a = (ipar.A < ipar.B) ? ipar.A : ipar.B;
+            double b = (ipar.A > ipar.B) ? ipar.A : ipar.B;
+            double incrm = (b - a) / ipar.Divisioni;
+            bool positivo;
+            double lmInf;
+            double lmSup = a;
+
+            double area = 0;
+
+            for (int i = 0; i < ipar.Divisioni; i++)
+            {
+                lmInf = lmSup;
+                lmSup = a + ((i + 1) * incrm);
+
+                if (!Discordi(lmInf, lmSup, ipar.Funzione, true))
+                {
+                    positivo = (fx(lmInf, ipar.Funzione) >= 0);
+                    double val = (positivo) ? MinimoFunzione(ipar.Funzione, lmInf, lmSup) : MassimoFunzione(ipar.Funzione, lmInf, lmSup);
+                    val = (!positivo) ? Modulo(val) : val;
+
+                    if (ipar.RettangoliMinori)
+                    {
+                        if (val != 0)
+                        {
+                            DisegnaRettangolo(lmInf, 0, incrm, val, Colore, positivo);
+                            area += incrm * val;
+                        }
+                    }
+                }
+            }
+
+            return area;
+        }
+
+        private double MassimoFunzione(string Funzione, double LimiteInferiore, double LimiteSuperiore)
+        {
+            double max = fx(LimiteInferiore, Funzione);
+            double indx = LimiteInferiore;
+            double val;
+            double incremento = (LimiteSuperiore - LimiteInferiore) / 4;
+
+            while (indx <= LimiteSuperiore)
+            {
+                val = fx(indx, Funzione);
+                if (max < val) max = val;
+                indx += incremento;
+            }
+
+            return max;
+        }
+
+        private double MinimoFunzione(string Funzione, double LimiteInferiore, double LimiteSuperiore)
+        {
+            double min = fx(LimiteInferiore, Funzione);
+            double indx = LimiteInferiore;
+            double val;
+            double incremento = (LimiteSuperiore - LimiteInferiore) / 4;
+
+            while (indx <= LimiteSuperiore)
+            {
+                val = fx(indx, Funzione);
+                if (min > val) min = val;
+                indx += incremento;
+            }
+
+            return min;
+        }
+
+        private double Modulo(double valore)
+        {
+            return (valore >= 0) ? valore : 0 - valore;
+        }
+
+        private void PulisciRidisegna(object sender, EventArgs e)
+        {
+            PulisciGrafico(null, null);
+            DisegnaClick(null, null);
+        }
+
+        private void DisegnaRettangolo(double X, double Y, double width, double height, Color colore, bool positivo = true)
+        {
+            try
+            {
+                graph._drawRectangle(X, (positivo) ? height - Y : Y, width, height, colore);
+            }
+            catch (NullReferenceException ex) { }
         }
 
         private bool PrelevaIntegrale()
@@ -45,8 +179,8 @@ namespace MyGeoCoso
             int iouter = 0;  //Variabile per l'estrazione dei valori interi
 
             //Integrità digitazione
-            txrIXa.SafeText = txrIXa.SafeText.Replace('.',',');
-            txrIXb.SafeText = txrIXb.SafeText.Replace('.',',');
+            txrIXa.SafeText = txrIXa.SafeText.Replace('.', ',');
+            txrIXb.SafeText = txrIXb.SafeText.Replace('.', ',');
 
             //Preleva dati
             ipar.Funzione = par.Funzione;
@@ -57,7 +191,7 @@ namespace MyGeoCoso
             if (int.TryParse(numIDivisioni.Value.ToString(), out iouter)) ipar.Divisioni = iouter;
             else
             {
-                status = Errore("Valore di Divisione non valido","Valore non valido");
+                status = Errore("Valore di Divisione non valido", "Valore non valido");
             }
 
             if (double.TryParse(txrIXa.SafeText, out outer)) ipar.A = outer; //Provo a parserizzare e se la parserizzazione va a buon fine salvo il risultato
@@ -86,7 +220,7 @@ namespace MyGeoCoso
         private bool _retMax;
         private bool _retMin;
         private bool _trap;
-        private double _divisioni;
+        private int _divisioni;
         private string _funzione;
         private ExpressionParser _parser;
 
@@ -160,7 +294,7 @@ namespace MyGeoCoso
         /// <summary>
         /// Espremi il numero di volte per cui verrà divisa la funzione
         /// </summary>
-        public double Divisioni
+        public int Divisioni
         {
             get { return _divisioni; }
             set { _divisioni = value; }
@@ -209,6 +343,7 @@ namespace MyGeoCoso
             _b = 0;
             _fa = 0;
             _fb = 0;
+            _divisioni = 0;
             _retMax = false;
             _retMin = false;
             _trap = false;

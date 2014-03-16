@@ -67,14 +67,14 @@ namespace MyGeoCoso
 
                 do  //Questa volta procedo con un DO-WHILE per poter eseguire almeno una volta una rivazione
                 {
-                    if (Discordi(spar.Fa, spar.Fb)) //Se Fa e Fb discordi procedo 
+                    if (Discordi(spar.Fa, spar.Fb,spar.Funzione)) //Se Fa e Fb discordi procedo 
                     {
                         spar.Elabora(); //Elaboro la secante
                         DisegnaPunto(spar.A, spar.Fa, Color.DarkRed);   //Disegno A
                         DisegnaPunto(spar.B, spar.Fb, Color.DarkRed);   //Disegno B
                         DisegnaSecante(Color.Blue); //Disegno la secante
 
-                        if (Discordi(spar.Fa, spar.Fx)) //Se F(a) e F(x) sono discodi
+                        if (Discordi(spar.Fa, spar.Fx,spar.Funzione)) //Se F(a) e F(x) sono discodi
                         {
                             DisegnaPunto(spar.X, spar.Fx, Color.Green); //Disegno X
                             individuato = true; //Individuato un punto
@@ -82,7 +82,7 @@ namespace MyGeoCoso
                         }
                         else
                         {
-                            if (Discordi(spar.Fb, spar.Fx)) //Se F(b) e F(x) sono discodi
+                            if (Discordi(spar.Fb, spar.Fx,spar.Funzione)) //Se F(b) e F(x) sono discodi
                             {
                                 DisegnaPunto(spar.X, spar.Fx, Color.Green);
                                 individuato = true; //Individuato un punto

@@ -28,7 +28,7 @@ namespace MyGeoCoso
                     DisegnaPunto(bpar.A, bpar.Fa, Color.Red);   //Disegno il punto A
                     DisegnaPunto(bpar.B, bpar.Fb, Color.Red);   //Disegno il punto B
 
-                    if (Discordi(bpar.Fa, bpar.Fc)) //Se A e C discordi
+                    if (Discordi(bpar.Fa, bpar.Fc,bpar.Funzione)) //Se A e C discordi
                     {
                         individuato = true; //Ho trovato qualcosa
                         bpar.B = bpar.C;    //C diventa B
@@ -36,7 +36,7 @@ namespace MyGeoCoso
                     }
                     else
                     {
-                        if (Discordi(bpar.Fb, bpar.Fc)) //Se A e C discordi
+                        if (Discordi(bpar.Fb, bpar.Fc,par.Funzione)) //Se A e C discordi
                         {
                             individuato = true; //Ho trovato qualcosa
                             bpar.A = bpar.C;    //C diventa A
@@ -112,15 +112,15 @@ namespace MyGeoCoso
             return status;
         }   //Preleva i dati dalla form e ne controlla tutti i valori
 
-        private bool Discordi(double xa, double xb,bool calcola=false) 
+        private bool Discordi(double xa, double xb,string Funzione,bool calcola=false) 
         {
             if (calcola)    //Se impostato a true calcola i valori
             {
-                xa = fx(xa, txtFunzione.Text);   //Derivo i valori nella funzione
-                xb = fx(xb, txtFunzione.Text);
+                xa = fx(xa, Funzione);   //Derivo i valori nella funzione
+                xb = fx(xb, Funzione);
             }
 
-            return ((xa * xb) <= 0);//Se il prodotto è minore di zero sono discordi
+            return ((xa * xb) < 0);//Se il prodotto è minore di zero sono discordi
         }   //La funzione determina se i due numeri forniti sono discordi
 
         private void DisegnaPunto(double x, double y,Color colore) 
